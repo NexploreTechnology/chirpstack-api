@@ -16,10 +16,9 @@ jobs:
         with:
           java-version: 16
       - name: requirements
-        working-directory: java
         run: |
-          mkdir -p googleapis-proto
-          cp -r googleapis/google/api/*.proto googleapis-proto/
+          mkdir -p java/googleapis-proto
+          cp -r googleapis/google/api/*.proto java/googleapis-proto/
       - name: build
         working-directory: java
         run: mvn --no-transfer-progress package
