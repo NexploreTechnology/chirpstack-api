@@ -1,7 +1,7 @@
 name: ChirpStack API
 on: [push, pull_request]
 jobs:
-  make-all:
+  java:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout ${{ github.repository }}@${{ github.ref }}
@@ -9,7 +9,7 @@ jobs:
       - name: Checkout googleapis repository
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/googleapis/googleapis.git
+          repository: googleapis/googleapis
           path: googleapis
       - name: Setup java
         uses: actions/setup-java@v1
