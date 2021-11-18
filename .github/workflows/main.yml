@@ -12,4 +12,4 @@ jobs:
           java-version: 16
       - name: build
         working-directory: java
-        run: mvn package
+        run: mvn --no-transfer-progress package
