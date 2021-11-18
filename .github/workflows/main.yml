@@ -4,18 +4,12 @@ jobs:
   make-all:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: go
-        run: make go
-      - name: swagger
-        run: make swagger
-      - name: js
-        run: make js
-      - name: rust
-        run: make rust
-      - name: python
-        run: make python
-      - name: java
-        run: make java
-      - name: Validate clean git state
-        run: git diff --exit-code
+      - name: Checkout ${{ github.repository }}@${{ github.ref }}
+        uses: actions/checkout@v2
+      - name: Setup java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 16
+      - name: build
+        working-directory: java
+        run: mvn package
