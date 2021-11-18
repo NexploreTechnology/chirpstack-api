@@ -6,10 +6,20 @@ jobs:
     steps:
       - name: Checkout ${{ github.repository }}@${{ github.ref }}
         uses: actions/checkout@v2
+      - name: Checkout googleapis repository
+        uses: actions/checkout@v2
+        with:
+          repository: https://github.com/googleapis/googleapis.git
+          path: googleapis
       - name: Setup java
         uses: actions/setup-java@v1
         with:
           java-version: 16
+      - name: requirements
+        working-directory: java
+        run: |
+          mkdir -p googleapis-proto
+          cp -r googleapis/google/api/*.proto googleapis-proto/
       - name: build
         working-directory: java
         run: mvn --no-transfer-progress package
