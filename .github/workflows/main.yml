@@ -21,4 +21,6 @@ jobs:
           cp -r googleapis/google/api/*.proto java/googleapis-proto/
       - name: build
         working-directory: java
-        run: mvn --no-transfer-progress package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn --no-transfer-progress --batch-mode deploy
